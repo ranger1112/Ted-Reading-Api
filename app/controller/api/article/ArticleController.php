@@ -10,6 +10,7 @@ class ArticleController extends ApiBaseController
     public function recommend()
     {
         $article              = ArticleModel::getRecommend();
+        $article['platform_name'] = $article->platform_name;
         # 段落排序
         $article['paragraph'] = $article->paragraph->sortBy('order');
 

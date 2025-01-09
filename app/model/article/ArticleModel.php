@@ -40,6 +40,21 @@ class ArticleModel extends Model
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 
+    public function platformMapping()
+    {
+        return [
+            self::PLATFORM_TED => [
+                'id'   => self::PLATFORM_TED,
+                'name' => 'TED'
+            ]
+        ];
+    }
+
+    public function getPlatformNameAttribute()
+    {
+        return getMappingValue(self::platformMapping(), $this->platform);
+    }
+
     public function paragraph()
     {
         return $this->hasMany(ArticleParagraphModel::class, 'article_id', 'id');
