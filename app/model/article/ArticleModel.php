@@ -24,6 +24,41 @@ class ArticleModel extends Model
 {
     protected $table = 'article';
 
+    const STATUS_NORMAL   = 1;  # 正常
+    const STATUS_HIDDEN   = 2;  # 隐藏
+    const RECOMMEND_FALSE = 1;
+    const RECOMMEND_TRUE  = 2;
+
+    const TYPE_SPEECH = 1;  # 演讲
+
+    const PLATFORM_TED = 1; # TED
+
     protected $guarded = [];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    public function paragraph()
+    {
+        return $this->hasMany(ArticleParagraphModel::class, 'article_id', 'id');
+    }
+
+    public function mark()
+    {
+        return $this->hasMany(ArticleMarkModel::class, 'article_id', 'id');
+    }
+
+    public static function getRecommend()
+    {
+        return self::with([
+            'paragraph:id,article_id,order,text,translation',
+            'paragraph.mark:id,article_id,paragraph_id,type,attr,content,grammar,desc',
+        ])->where([
+            'status' => self::STATUS_NORMAL,
+            'is_recommend' => self::RECOMMEND_TRUE
+        ])->orderBy('id', 'desc')->first();
+    }
 
 }

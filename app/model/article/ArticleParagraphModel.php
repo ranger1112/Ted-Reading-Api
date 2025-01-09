@@ -17,4 +17,14 @@ class ArticleParagraphModel extends Model
 
     protected $guarded = [];
 
+    public function article()
+    {
+        return $this->belongsTo(ArticleModel::class, 'article_id', 'id');
+    }
+
+    public function mark()
+    {
+        return $this->hasMany(ArticleMarkModel::class, 'paragraph_id', 'id');
+    }
+
 }

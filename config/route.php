@@ -12,6 +12,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+use app\controller\api\article\ArticleController;
 use app\controller\api\LoginController;
 use app\middleware\AuthMiddleware;
 use Webman\Route;
@@ -23,6 +24,12 @@ Route::group('/v1', function () {
     Route::post('/register', [LoginController::class, 'register']);
     // 注册的验证码
     Route::post('/register-code', [LoginController::class, 'registerCode']);
+    // 文章相关
+    Route::group('/article', function () {
+        // 随机推荐文章
+        Route::get('/recommend', [ArticleController::class, 'recommend']);
+    });
+
 });
 
 Route::group('/v1', function () {
