@@ -26,6 +26,8 @@ CREATE TABLE `v0_article`
     `id`           int(11)                                 NOT NULL AUTO_INCREMENT,
     `title`        varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文章标题',
     `zh_title`     varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '中文标题',
+    `status`       tinyint(4)                              NOT NULL DEFAULT 1 COMMENT '文章状态 1-正常 2-隐藏',
+    `is_recommend` tinyint(4)                              NOT NULL DEFAULT 1 COMMENT '是否推荐 1-否 2-是',
     `type`         tinyint(4)                              NOT NULL DEFAULT 1 COMMENT '文章类型 1-文章',
     `platform`     tinyint(4)                              NOT NULL DEFAULT 1 COMMENT '来源平台 1-TED',
     `author`       varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '作者',
