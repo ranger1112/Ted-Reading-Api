@@ -19,11 +19,11 @@ return [
     'connections' => [
         'mysql' => [
             'driver'      => 'mysql',
-            'host'        => '127.0.0.1',
-            'port'        => 3306,
-            'database'    => 'ted_reading',
-            'username'    => 'root',
-            'password'    => 'root',
+            'host'        => getenv('DB_HOST'),
+            'port'        => getenv('DB_PORT'),
+            'database'    => getenv('DB_DATABASE'),
+            'username'    => getenv('DB_USERNAME'),
+            'password'    => getenv('DB_PASSWORD'),
             'unix_socket' => '',
             'charset'     => 'utf8mb4',
             'collation'   => 'utf8mb4_unicode_ci',
