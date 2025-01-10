@@ -50,13 +50,26 @@ class ArticleModel extends Model
         return $this->hasMany(ArticleMarkModel::class, 'article_id', 'id');
     }
 
+    public static function parse($params)
+    {
+        $articleId = $params['id'] ?? 0;
+        unset($params['id']);
+        if ($articleId) {
+            $article = self::query()->find($articleId);
+            $article->update($params);
+        } else {
+            $article = self::query()->create($params);
+        }
+        return $article;
+    }
+
     public static function getRecommend()
     {
         return self::with([
             'paragraph:id,article_id,order,text,translation',
             'paragraph.mark:id,article_id,paragraph_id,type,attr,content,grammar,desc',
         ])->where([
-            'status' => self::STATUS_NORMAL,
+            'status'       => self::STATUS_NORMAL,
             'is_recommend' => self::RECOMMEND_TRUE
         ])->orderBy('id', 'desc')->first();
     }

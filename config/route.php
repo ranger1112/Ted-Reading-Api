@@ -16,6 +16,7 @@ use app\controller\api\article\ArticleController;
 use app\controller\api\LoginController;
 use app\middleware\AuthMiddleware;
 use Webman\Route;
+use app\controller\admin\article\ArticleAdminController;
 
 Route::group('/v1', function () {
     // 登录相关
@@ -33,7 +34,10 @@ Route::group('/v1', function () {
 });
 
 Route::group('/v1', function () {
-
+    Route::group('/article', function () {
+        // 随机推荐文章
+        Route::post('/parse', [ArticleAdminController::class, 'parse']);
+    });
 })->middleware([
     AuthMiddleware::class,
 ]);

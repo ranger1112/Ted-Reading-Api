@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controller\api;
+namespace app\controller;
 
 use app\constant\ResponseConst;
 use support\Response;

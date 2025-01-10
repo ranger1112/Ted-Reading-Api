@@ -64,7 +64,7 @@ CREATE TABLE `v0_article_mark`
     `article_id`   int(11)                         NOT NULL COMMENT '文章ID',
     `paragraph_id` int(11)                         NOT NULL COMMENT '文章段落ID',
     `type`         tinyint(4)                      NOT NULL DEFAULT 1 COMMENT '类型 1-单词 2-短语',
-    `attr`         varchar(50)                     NOT NULL DEFAULT '' COMMENT '词性',
+    `attr`         tinyint(4)                      NOT NULL DEFAULT 1 COMMENT '词性',
     `content`      text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文章内容',
     `grammar`      text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '语法',
     `desc`         text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '描述',
